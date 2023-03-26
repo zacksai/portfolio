@@ -1,3 +1,4 @@
+/* Base styles */
 body {
     height: 100vh;
     width: 100vw;
@@ -6,10 +7,13 @@ body {
     overflow: hidden;
 }
 
-.rubik-font {
-    font-family: "Rubik", sans-serif;
+/* Fonts */
+.sf-pro-display-font {
+    font-family: "SF Pro Display", sans-serif;
+    font-stretch: expanded;
 }
 
+/* Main section */
 main {
     background-image: url("png/FilmPic1.png");
     background-position: center 0%; /* horizontal center */
@@ -18,12 +22,81 @@ main {
     width: 100vw;
     position: relative;
     z-index: 2; /* sandwich between nav toggle and nav menu */
-    transition: transform 500ms cubic-bezier(.13, .53, .38, .97); /* smooth */
+
+    /* Transition for smooth transform */
+    transition: transform 500ms cubic-bezier(.13, .53, .38, .97);
 }
 
+/* Name */
 
-/* "menu" */
-/* navigation toggle "button" */
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 0, 0, .5); /* Or any other color you prefer */
+
+    font-size: 3rem; /* Adjust the font size as needed */
+}
+
+/* Navigation */
+
+/* nav bar container */
+nav {
+    height: 50vh; /* half page */
+    width: 100%;
+    position: absolute;
+    left: 0px; /* bottom left align */
+    bottom: 0px;
+    z-index: 1; /* bottom */
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+}
+
+/* Navigation links container */
+#nav-links {
+    display: inline-flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    margin-top: clamp(2rem, 2vw, 3rem);
+    padding: 0rem clamp(1rem, 2vw, 2rem);
+
+    /* Transform and transition for smooth reveal of navigation links */
+    transform: translateY(70%) scale(0.9);
+    transition: transform 500ms cubic-bezier(.13, .53, .38, .97);
+}
+
+/* Navigation link button */
+#nav-links > .nav-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none; /* remove underline */
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+/* Navigation link label */
+#nav-links > .nav-link > .nav-link-label {
+    color: white;
+    font-size: 1.25rem;
+    margin: 0rem;
+    text-transform: uppercase;
+}
+
+/* Navigation link image */
+#nav-links > .nav-link > .nav-link-image {
+    width: max(20vw, 400px); /* min, max */
+    aspect-ratio: 1.8 / 1;
+    border-radius: 0.5rem;
+    margin-top: 0.75rem;
+    object-fit: cover; /* keep that thang proportional */
+}
+
+/* Navigation toggle button */
 #nav-toggle {
     height: 5rem;
     width: 5rem;
@@ -38,23 +111,28 @@ main {
     outline: none;
     box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 35%);
     cursor: pointer;
-    transition: transform, background-color; /* smooth */
+
+    /* Transitions for smooth hover and active states */
+    transition: transform, background-color;
     transition-timing-function: ease;
-    transition-duration: 400ms;
+    transition-duration: 800ms;
 }
 
-/* interact when hovered */
+/* Hover state for navigation toggle button */
 #nav-toggle:hover {
     transform: translateX(-50%) scale(1.04);
 }
 
-/* interact when pressed */
+/* Active state for navigation toggle button */
 #nav-toggle:active {
     transform: translateX(-50%) scale(0.96);
 }
 
-/* icon inside */
-#nav-toggle > i {
+/* Icon inside navigation toggle button */
+#nav-toggle > img {
+    width: 1.25rem;
+    height: auto;
+    aspect-ratio: initial;
     position: absolute;
     left: 50%;
     top: 50%; /* center */
@@ -62,87 +140,43 @@ main {
     color: rgb(246, 231, 224);
     font-size: 1.75rem;
     opacity: 0; /* default to invisible */
-    transition: transform, opacity; /* smooth */
+
+    /* Transition for smooth reveal of icons */
+    transition: transform, opacity;
     transition-timing-function: ease;
-    transition-duration: 400ms;
+    transition-duration: 800ms;
 }
 
-/* open icon on hover */
+/* Open icon on hover */
 body:not([data-nav="true"]) > #nav-toggle:hover > .open {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* close icon */
+/* Close icon */
 body[data-nav="true"] > #nav-toggle > .close {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* shift background up when nav toggled */
+/* Shift background up when nav toggled */
 body[data-nav="true"] > main {
     transform: translateY(-50%);
 }
 
-
-/* navigation */
-
-/* link itself */
-#nav-links > .nav-link {
-    text-decoration: none; /* remove underline */
-}
-
-/* clean link */
-#nav-links > .nav-link > .nav-link-label {
-    color: white;
-    font-size: 1.25rem;
-    margin: 0rem;
-    text-transform: uppercase;
-}
-
-/* clean image */
-#nav-links > .nav-link > .nav-link-image {
-    width: max(20vw, 400px); /* min, max */
-    aspect-ratio: 1.8 / 1;
-    border-radius: 0.5rem;
-    margin-top: 0.75rem;
-    object-fit: cover; /* keep that thang proportional */
-}
-
-/* spacing within navigation */
-nav {
-    height: 50vh; /* half page */
-    width: 100%;
-    position: absolute;
-    left: 0px; /* bottom left align */
-    bottom: 0px;
-    z-index: 1; /* bottom */
-    overflow: hidden;
-}
-
-/* clean up */
-#nav-links {
-    display: flex;
-    gap: clamp(1rem, 2vw, 2rem);
-    margin-top: clamp(2rem, 2vw, 3rem);
-    padding: 0rem clamp(1rem, 2vw, 2rem);
-    transform: translateY(70%) scale(0.9); /* shift down, smooth up */
-    transition: transform 500ms cubic-bezier(.13, .53, .38, .97);
-}
-
-/* smoothly slide in */
+/* Slide in navigation links when nav toggled */
 body[data-nav="true"] > nav > #nav-links {
     transform: translateY(0%) scale(1);
 }
 
-/* change toggle color */
+/* Change navigation toggle color when nav toggled */
 body[data-nav="true"] > #nav-toggle {
     background-color: rgba(85, 130, 149, .8);
 }
 
-/* "carousel" */
+/* Carousel */
 
-/* make image track */
+/* Image track container */
 #image-track {
     display: flex;
     gap: 4vmin;
@@ -150,10 +184,10 @@ body[data-nav="true"] > #nav-toggle {
     left: 50%;
     top: 50%;
     transform: translate(0%, -50%);
-    user-select: none; /* -- Prevent image highlighting -- */
+    user-select: none; /* Prevent image highlighting */
 }
 
-/* images in image track */
+/* Images inside image track */
 #image-track > .image {
     width: 40vmin;
     height: 56vmin;
