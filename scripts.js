@@ -5,7 +5,6 @@ const toggleNav = () => {
 
 const toggleButtonClicked = () => {
     document.body.dataset.buttonClicked = document.body.dataset.buttonClicked === "true" ? "false" : "true";
-    document.querySelector('#nav-links').style.display = 'none'; // hide the nav links
 }
 
 

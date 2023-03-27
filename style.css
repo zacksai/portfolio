@@ -36,7 +36,6 @@ nav {
     position: absolute;
     bottom: 3rem;
     z-index: 1; /* bottom layer */
-    text-align: center;
 }
 
 /* Navigation links container */
@@ -98,7 +97,6 @@ nav {
     outline: none;
     box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 37%);
     cursor: pointer;
-    margin: 0;
 
     /* Transitions for smooth hover and active states */
     transition: transform, background-color; /* trans transform & bg color */
@@ -188,8 +186,8 @@ body:not([data-button-clicked="true"])[data-nav="true"] > nav > #nav-links {
 /* Background up all the way */
 /* image-track into page */
 body[data-nav="true"][data-button-clicked="true"] #image-track {
-  transform: translateY(-50%) scale(1);
-  transition: transform 1000ms cubic-bezier(.13, .53, .38, .97);
+    transform: translateY(-50%) scale(1);
+    transition: transform 1000ms cubic-bezier(.13, .53, .38, .97);
     display: flex;
 }
 
@@ -207,17 +205,16 @@ body[data-nav="true"][data-button-clicked="true"] > nav > #nav-links {
 
 /* Nav toggle up to top */
 body[data-nav="true"][data-button-clicked="true"] > #nav-toggle {
-    transform: translateY(-90vh) scale(1);
+    transform: translateX(-50%) translateY(-90vh) scale(1);
     transition: transform 1000ms cubic-bezier(.13, .53, .38, .97);
 }
-
 
 
 /* --- Nav Toggled Again*/
 
 /* Nav links down */
 body:not([data-nav="true"])[data-button-clicked="true"] > #nav-toggle {
-    transform: translateY(-71vh) scale(1);
+    transform: translateX(-50%) translateY(-71vh) scale(1);
     transition: transform 800ms cubic-bezier(.13, .53, .38, .97);
 }
 
@@ -226,8 +223,8 @@ body:not([data-nav="true"])[data-button-clicked="true"] > main {
     transition: transform 800ms cubic-bezier(.13, .53, .38, .97);
 }
 
-body:not([data-nav="true"])[data-button-clicked="true"] > nav > #nav-links{
-    transform: translateY(-80vh) scale(1);
+body:not([data-nav="true"])[data-button-clicked="true"] > nav > #nav-links {
+    transform: translateY(-78vh) scale(1);
     transition: transform 800ms cubic-bezier(.13, .53, .38, .97);
 }
 
@@ -238,7 +235,7 @@ body:not([data-nav="true"])[data-button-clicked="true"] > nav > #nav-links{
     gap: 4vmin;
     position: absolute;
     left: 50%;
-   bottom: -100%;
+    bottom: -100%;
     transform: translate(0, -50%);
     /*transform: translate(0%, -50%);*/
     user-select: none; /* Prevent image highlighting */
