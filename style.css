@@ -3,7 +3,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: black;
-    margin: 0rem;
+    margin: 0;
     overflow: hidden;
 }
 
@@ -27,42 +27,27 @@ main {
     transition: transform 500ms cubic-bezier(.13, .53, .38, .97);
 }
 
-/* Name */
-
-.centered-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgba(0, 0, 0, .5); /* Or any other color you prefer */
-
-    font-size: 3rem; /* Adjust the font size as needed */
-}
-
 /* Navigation */
 
 /* nav bar container */
 nav {
-    height: 50vh; /* half page */
+    height: auto; /* nearly half page */
     width: 100%;
     position: absolute;
-    left: 0px; /* bottom left align */
-    bottom: 0px;
-    z-index: 1; /* bottom */
-    overflow-x: scroll;
-    overflow-y: hidden;
-
+    bottom: 3rem;
+    z-index: 1; /* bottom layer */
 }
 
 /* Navigation links container */
 #nav-links {
+    width: 100%;
     display: inline-flex;
-    gap: clamp(1rem, 2vw, 2rem);
-    margin-top: clamp(2rem, 2vw, 3rem);
-    padding: 0rem clamp(1rem, 2vw, 2rem);
+    justify-content: center;
+    bottom: 3rem;
+    gap: clamp(1rem, 3vw, 4rem); /* gap between elements */
 
     /* Transform and transition for smooth reveal of navigation links */
-    transform: translateY(70%) scale(0.9);
+    transform: translateY(50%) scale(0.9);
     transition: transform 500ms cubic-bezier(.13, .53, .38, .97);
 }
 
@@ -82,63 +67,61 @@ nav {
 /* Navigation link label */
 #nav-links > .nav-link > .nav-link-label {
     color: white;
-    font-size: 1.25rem;
-    margin: 0rem;
-    text-transform: uppercase;
+    font-size: 1.17rem;
+    margin: 0;
+    text-transform: lowercase;
+    letter-spacing: 3px; /* space between letters */
 }
 
 /* Navigation link image */
 #nav-links > .nav-link > .nav-link-image {
-    width: max(20vw, 400px); /* min, max */
-    aspect-ratio: 1.8 / 1;
-    border-radius: 0.5rem;
+    width: calc(90vw / 3); /* width of elements */
+    aspect-ratio: 1.77 / 1;
+    border-radius: 0.7rem;
     margin-top: 0.75rem;
     object-fit: cover; /* keep that thang proportional */
 }
 
 /* Navigation toggle button */
-#nav-toggle {
+#menu-toggle {
     height: 5rem;
-    width: 5rem;
+    width: 8rem;
     position: fixed;
     z-index: 3; /* sit on top */
-    left: 50%;
-    bottom: 3rem;
+    left: 50%; /* center in page */
+    bottom: 3rem; /* space to bottom */
     transform: translateX(-50%); /* center in page */
     background-color: rgba(255, 255, 255, .5);
     border: none;
     border-radius: 5rem;
     outline: none;
-    box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 35%);
+    box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 37%);
     cursor: pointer;
 
     /* Transitions for smooth hover and active states */
-    transition: transform, background-color;
+    transition: transform, background-color; /* trans transform & bg color */
     transition-timing-function: ease;
     transition-duration: 800ms;
 }
 
-/* Hover state for navigation toggle button */
-#nav-toggle:hover {
+/* Animate hover and click on menu toggle  */
+#menu-toggle:hover {
     transform: translateX(-50%) scale(1.04);
 }
 
-/* Active state for navigation toggle button */
-#nav-toggle:active {
+#menu-toggle:active {
     transform: translateX(-50%) scale(0.96);
 }
 
-/* Icon inside navigation toggle button */
-#nav-toggle > img {
-    width: 1.25rem;
+/* child element: image in menu toggle */
+#menu-toggle > img {
+    width: 1.7rem;
     height: auto;
     aspect-ratio: initial;
     position: absolute;
     left: 50%;
     top: 50%; /* center */
     transform: translate(-50%, -50%) scale(0.9);
-    color: rgb(246, 231, 224);
-    font-size: 1.75rem;
     opacity: 0; /* default to invisible */
 
     /* Transition for smooth reveal of icons */
@@ -147,34 +130,56 @@ nav {
     transition-duration: 800ms;
 }
 
-/* Open icon on hover */
-body:not([data-nav="true"]) > #nav-toggle:hover > .open {
+/* Change menu toggle icon to open symbol when nav is open */
+body:not([data-nav="true"]) > #menu-toggle:hover > .open {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%);
 }
 
-/* Close icon */
-body[data-nav="true"] > #nav-toggle > .close {
+/* Change menu toggle icon to close symbol when nav is open */
+body[data-nav="true"] > #menu-toggle > .close {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%);
 }
 
 /* Shift background up when nav toggled */
 body[data-nav="true"] > main {
-    transform: translateY(-50%);
+    transform: translateY(-33%);
 }
 
 /* Slide in navigation links when nav toggled */
 body[data-nav="true"] > nav > #nav-links {
-    transform: translateY(0%) scale(1);
+    transform: translateY(-50%) scale(1);
 }
 
 /* Change navigation toggle color when nav toggled */
-body[data-nav="true"] > #nav-toggle {
+body[data-nav="true"] > #menu-toggle {
     background-color: rgba(85, 130, 149, .8);
 }
 
-/* Carousel */
+/* Shift background up when nav toggled */
+body[data-nav="true"][data-button-clicked="true"] > main,
+body[data-nav="true"][data-button-clicked="true"] > nav {
+    transform: translateY(-100%);
+}
+
+/* Slide in navigation links when nav toggled */
+body[data-nav="true"][data-button-clicked="true"] > nav > #nav-links {
+    transform: translateY(0%);
+}
+
+/* Change navigation toggle color when nav toggled */
+body[data-nav="true"][data-button-clicked="true"] > #menu-toggle {
+    background-color: rgba(85, 130, 149, .8);
+}
+
+/* Shift menu-toggle up when nav toggled */
+body[data-nav="true"][data-button-clicked="true"] > #menu-toggle {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
 
 /* Image track container */
 #image-track {
@@ -185,6 +190,7 @@ body[data-nav="true"] > #nav-toggle {
     top: 50%;
     transform: translate(0%, -50%);
     user-select: none; /* Prevent image highlighting */
+    z-index: 1;
 }
 
 /* Images inside image track */

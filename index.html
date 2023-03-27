@@ -8,7 +8,12 @@
 <body data-nav="false" data-button-clicked="false">
 
 <main>
-    <script src="scripts.js"></script> <!-- specifies script -->
+    <!-- specify script -->
+    <script src="scripts.js"></script>
+
+    <!--    Create Div for photography -->
+    <!--    Create Div for Projects -->
+    <!--    Create Div for About -->
 
     <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0" style="display: none;">
         <img class="image" src="png/FilmPic1.png" draggable="false"/>
@@ -20,32 +25,45 @@
         <img class="image" src="png/FilmPic7.png" draggable="false"/>
         <img class="image" src="png/FilmPic8.png" draggable="false"/>
     </div>
-</main>
 
-<nav> <!-- navigation element with links -->
-    <div id="nav-links" data-display="false">
-        <button class="nav-link" type="button">
-            <h2 class="nav-link-label sf-pro-display-font">Photography</h2>
-            <img class="nav-link-image" src="png/FilmPic8.png" draggable="false"/>
-        </button>
-        <button class="nav-link" type="button">
-            <h2 class="nav-link-label sf-pro-display-font">Work</h2>
-            <img class="nav-link-image" src="png/FilmPic7.png" draggable="false"/>
-        </button>
-        <button class="nav-link" type="button">
-            <h2 class="nav-link-label sf-pro-display-font">About</h2>
-            <img class="nav-link-image" src="png/FilmPic6.png" draggable="false"/>
-        </button>
+    <div id="project-track" data-mouse-down-at="0" data-prev-percentage="0" style="display: none;">
+        <img class="image" src="png/FilmPic1.png" draggable="false"/>
+        <img class="image" src="png/FilmPic2.png" draggable="false"/>
+        <img class="image" src="png/FilmPic3.png" draggable="false"/>
+        <img class="image" src="png/FilmPic4.png" draggable="false"/>
+        <img class="image" src="png/FilmPic5.png" draggable="false"/>
+        <img class="image" src="png/FilmPic6.png" draggable="false"/>
+        <img class="image" src="png/FilmPic7.png" draggable="false"/>
+        <img class="image" src="png/FilmPic8.png" draggable="false"/>
     </div>
-</nav>
 
-<button id="nav-toggle" type="button" onclick="toggleNav()">
+</main>
+<button id="menu-toggle" type="button" onclick="toggleNav()">
 
     <!-- This is a button element with an id, a type, and an onclick attribute. -->
     <img class="open" src="png/chevron.up.png" alt="Open Icon"/>
     <img class="close" src="png/checkmark.png" alt="Close Icon"/>
 </button>
 
+<nav> <!-- navigation element with links -->
+    <div id="nav-links" data-display="false">
+        <button class="nav-link" type="button" onclick="toggleButtonClicked()">
+            <h2 class="nav-link-label sf-pro-display-font">projects</h2>
+            <img class="nav-link-image" src="png/FilmPic8.png" draggable="false"/>
+        </button>
+        <button class="nav-link" type="button" onclick="toggleButtonClicked()">
+            <h2 class="nav-link-label sf-pro-display-font">film</h2>
+            <img class="nav-link-image" src="png/FilmPic7.png" draggable="false"/>
+        </button>
+        <button class="nav-link" type="button" onclick="toggleButtonClicked()">
+            <h2 class="nav-link-label sf-pro-display-font">info</h2>
+            <img class="nav-link-image" src="png/FilmPic6.png" draggable="false"/>
+        </button>
+    </div>
+</nav>
+
+
 </body>
+
 
 </html>
