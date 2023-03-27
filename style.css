@@ -135,7 +135,6 @@ body:not([data-nav="true"]) > #nav-toggle:hover > .openUp {
     transform: translate(-50%, -50%);
 }
 
-
 /* Change to done when nav open*/
 body[data-nav="true"] > #nav-toggle > .done {
     opacity: 1;
@@ -173,37 +172,30 @@ body[data-button-clicked="true"] > #nav-toggle {
 
 /* --- Nav Toggled */
 /* Background up */
-body:not([data-button-clicked="true"])[data-nav="true"] > main {
+body[data-nav="true"]:not([data-button-clicked="true"]) > main {
     transform: translateY(-33%);
 }
 
 /* Nav links up */
-body:not([data-button-clicked="true"])[data-nav="true"] > nav > #nav-links {
+body[data-nav="true"]:not([data-button-clicked="true"]) > nav > #nav-links {
     transform: translateY(-50%) scale(1);
 }
 
 /* --- Button Clicked */
-/* Background up all the way */
-/* image-track into page */
-body[data-nav="true"][data-button-clicked="true"] #image-track {
-    transform: translateY(-50%) scale(1);
-    transition: transform 1000ms cubic-bezier(.13, .53, .38, .97);
-    display: flex;
-}
-
+/* Background up off the page */
 body[data-nav="true"][data-button-clicked="true"] > main {
     transform: translateY(-100vh) scale(1);
     transition: transform 800ms cubic-bezier(.13, .53, .38, .97);
 }
 
-/* Nav links up all the way*/
+/* Nav links up off the page*/
 body[data-nav="true"][data-button-clicked="true"] > nav > #nav-links {
     transform: translateY(-100vh) scale(1);
     transition: transform 900ms cubic-bezier(.13, .53, .38, .97);
 
 }
 
-/* Nav toggle up to top */
+/* Nav toggle up to top of page */
 body[data-nav="true"][data-button-clicked="true"] > #nav-toggle {
     transform: translateX(-50%) translateY(-90vh) scale(1);
     transition: transform 1000ms cubic-bezier(.13, .53, .38, .97);

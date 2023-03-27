@@ -1,10 +1,38 @@
-// toggle navigation menu, turns body's "nav" from true to false
+// CONTROLS: check for toggle of nav or button clicked, update state accordingly
 const toggleNav = () => {
+    // toggle when clicked (if it's true, set it to false, else set it to true)
     document.body.dataset.nav = document.body.dataset.nav === "true" ? "false" : "true";
+
+    // move to appropriate state, read "when toggle is clicked in each state, go to this state"
+    if (document.body.dataset.state == "S1") {
+        document.body.dataset.state = "S2";
+    } else if (document.body.dataset.state == "S2") {
+        document.body.dataset.state = "S1";
+    } else if (document.body.dataset.state == "S3") {
+        document.body.dataset.state = "S4";
+    } else if (document.body.dataset.state == "S4") {
+        document.body.dataset.state = "S3";
+    }
 }
 
 const toggleButtonClicked = () => {
+    // toggle when clicked (if it's true, set it to false, else set it to true)
     document.body.dataset.buttonClicked = document.body.dataset.buttonClicked === "true" ? "false" : "true";
+
+    // move to appropriate state, read "when button is clicked in each state, go to this state"
+    if (document.body.dataset.state == "S2") { // "immerse"
+
+        // move to state 3, reset button to true (both nav & bc should be true)
+        document.body.dataset.state = "S3";
+        document.body.dataset.buttonClicked = "true";
+
+        // "immerse"
+    } else if (document.body.dataset.state == "S4") {
+        document.body.dataset.state = "S3";
+        document.body.dataset.nav = "true";
+        document.body.dataset.buttonClicked = "true";
+
+    }
 }
 
 
