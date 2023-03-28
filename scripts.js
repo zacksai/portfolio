@@ -44,21 +44,21 @@ const toggleButtonClicked = (buttonType) => {
         track.style.display = 'none';
     });
 
-    // Get the track div corresponding to the button that was clicked
-    let selectedTrack;
-    if (buttonType === 'projects') {
-        selectedTrack = document.getElementById('projects');
-    } else if (buttonType === 'film') {
-        selectedTrack = document.getElementById('film');
-    } else if (buttonType === 'about') {
-        selectedTrack = document.getElementById('about');
-    }
-
-    // Use the appropriate div
-    if (selectedTrack) {
-        selectedTrack.style.display = 'flex';
-        track = selectedTrack; // Update the 'track' variable
-    }
+    // // Get the track div corresponding to the button that was clicked
+    // let selectedTrack;
+    // if (buttonType === 'projects') {
+    //     selectedTrack = document.getElementById('projects');
+    // } else if (buttonType === 'film') {
+    //     selectedTrack = document.getElementById('film');
+    // } else if (buttonType === 'about') {
+    //     selectedTrack = document.getElementById('about');
+    // }
+    //
+    // // Use the appropriate div
+    // if (selectedTrack) {
+    //     selectedTrack.style.display = 'flex';
+    //     track = selectedTrack; // Update the 'track' variable
+    // }
 
 }
 
