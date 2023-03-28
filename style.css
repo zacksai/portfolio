@@ -142,14 +142,14 @@ nav {
 
 /* Image track container */
 .image-track {
-    pointer-events: none; /* no interactions with track */
+    pointer-events: auto; /* no interactions with track */
     display: flex;
     gap: 4vmin; /* spacing between inner parts */
     position: absolute;
     left: 50%;
-    bottom: -100%;
+    bottom: -56vmin;
     height: 56vmin;
-    transform: translate(0, -50%);
+    /*transform: translate(0, -50%);*/
     user-select: none; /* Prevent image highlighting */
     z-index: 4;
     transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97), transform 1100ms cubic-bezier(.83, .3, .38, .97);
@@ -261,8 +261,7 @@ body[data-nav="true"][data-button-clicked="true"] > #nav-toggle {
 
 /* Show the image track when a button is clicked */
 body[data-button-clicked="true"] > .image-track {
-    bottom: 10%;
-    transform: translateY(-50%);
+    transform: translateY(calc(-50vh - 28vmin));
 }
 
 
