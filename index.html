@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css"> <!-- specifies stylesheet -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body data-nav="false" data-button-clicked="false" data-state="S1">
@@ -10,6 +13,7 @@
 <div class="custom-cursor"></div>
 
 <main>
+      <h1 class="centered">Zack Sai</h1>
 </main>
 <button id="nav-toggle" type="button" onclick="toggleNav()">
 
@@ -54,7 +58,14 @@
 </div>
 
 <div class="image-track" id="projects" data-mouse-down-at="0" data-prev-percentage="0">
-    <img class="image" src="png/FilmPic1.png" draggable="false"/>
+    <div class="image-container">
+        <img class="image" src="png/FilmPic1.png" draggable="false"/>
+        <a href="https://amazon.com" class="label">Label 1</a>
+    </div>
+    <div class="image-container">
+        <img class="image" src="png/FilmPic2.png" draggable="false"/>
+        <a href="https://amazon.com" class="label">Label 2</a>
+    </div>
 </div>
 
 
