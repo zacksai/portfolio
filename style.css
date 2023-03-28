@@ -25,10 +25,10 @@ main {
 
 /* nav bar container */
 nav {
-    height: 33vh; /* nearly half page */
+    height: calc(30vh - 5rem); /* nearly half page */
     width: 100vw;
     position: fixed;
-    bottom: 0vh;
+    bottom: calc(5rem + 3vh);
     z-index: 1; /* bottom layer */
 }
 
@@ -47,8 +47,7 @@ nav {
 
 /* Navigation links container */
 #nav-links {
-    background-color: grey;
-    height: 33vh;
+    height: calc(30vh - 5rem);
     width: 100vw;
     display: flex;
     justify-content: space-around;
@@ -62,7 +61,7 @@ nav {
 /* Navigation link button */
 #nav-links > .nav-link {
     max-width: calc(95vw / 3);
-    max-height: 33vh;
+    max-height: calc(.3 * (30vh - 5rem));
     background: none;
     border: none;
     cursor: pointer;
@@ -89,7 +88,7 @@ nav {
 /* Navigation link image */
 #nav-links > .nav-link > .nav-link-image {
     width: calc(90vw / 3.5); /* width of elements */
-    max-height: calc(90vh / 3.5);
+    max-height: calc(.7 * (30vh - 5rem));
     aspect-ratio: 1.77;
     border-radius: 0.7vh;
     object-fit: cover; /* keep that thang proportional */
