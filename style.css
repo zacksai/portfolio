@@ -7,20 +7,14 @@ body {
     overflow: hidden;
 }
 
-/* Fonts */
-.sf-pro-display-font {
-    font-family: "SF Pro Display", sans-serif;
-    font-stretch: expanded;
-}
-
 /* Main section */
 main {
     background-image: url("png/FilmPic1.png");
     background-position: center 0%; /* horizontal center */
     background-size: cover;
-    height: 100vh;
+    height: 100vh; /* take up 77% of the screen */
     width: 100vw;
-    position: relative;
+    position: fixed;
     z-index: 2; /* sandwich between nav toggle and nav menu */
 
     /* Transition for smooth transform */
@@ -31,19 +25,19 @@ main {
 
 /* nav bar container */
 nav {
-    height: auto; /* nearly half page */
-    width: 100%;
-    position: absolute;
-    bottom: 3rem;
+    height: 33vh; /* nearly half page */
+    width: 100vw;
+    position: fixed;
+    bottom: 0vh;
     z-index: 1; /* bottom layer */
 }
 
 .custom-cursor {
     position: fixed;
     display: none;
-    width: 30px;
-    height: 30px;
-    border: 2px solid black;
+    width: 2vw;
+    height: 2vw;
+    border: .2vw solid black;
     background-color: rgba(210, 232, 245, .5);
     border-radius: 50%;
     pointer-events: none;
@@ -53,62 +47,69 @@ nav {
 
 /* Navigation links container */
 #nav-links {
-    width: 100%;
-    display: inline-flex;
-    justify-content: center;
-    bottom: 3rem;
-    gap: clamp(1rem, 3vw, 4rem); /* gap between elements */
-
+    background-color: grey;
+    height: 33vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    bottom: 0;
     /* Transform and transition for smooth reveal of navigation links */
-    transform: translateY(50%) scale(0.9);
+    transform: translateY(100%) scale(.87); /* start it off right under the screen */
     transition: transform 500ms cubic-bezier(.13, .53, .38, .97);
 }
 
 /* Navigation link button */
 #nav-links > .nav-link {
+    max-width: calc(95vw / 3);
+    max-height: 33vh;
     background: none;
     border: none;
     cursor: pointer;
     outline: none;
     text-decoration: none; /* remove underline */
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
+
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    justify-content: center; /* THIS IS THE CENTER */
+    align-items: center; /* align column center */
+
+    padding: 1vh;
 }
 
 /* Navigation link label */
 #nav-links > .nav-link > .nav-link-label {
     color: white;
-    font-size: 1.17rem;
-    margin: 0;
+    font-family: Avenir, sans-serif;
+    font-size: 1.17vh;
     text-transform: lowercase;
     letter-spacing: 3px; /* space between letters */
 }
 
 /* Navigation link image */
 #nav-links > .nav-link > .nav-link-image {
-    width: calc(90vw / 3); /* width of elements */
-    aspect-ratio: 1.77 / 1;
-    border-radius: 0.7rem;
-    margin-top: 0.75rem;
+    width: calc(90vw / 3.5); /* width of elements */
+    max-height: calc(90vh / 3.5);
+    aspect-ratio: 1.77;
+    border-radius: 0.7vh;
     object-fit: cover; /* keep that thang proportional */
 }
 
 /* Navigation toggle button */
 #nav-toggle {
     height: 5rem;
-    width: 8rem;
+    width: auto;
     position: fixed;
+    aspect-ratio: 1.77;
     z-index: 3; /* sit on top */
     left: 50%; /* center in page */
-    bottom: 3rem; /* space to bottom */
+    bottom: 3vh; /* space to bottom */
     transform: translateX(-50%); /* center in page */
     background-color: rgba(255, 255, 255, .5);
     border: none;
     border-radius: 5rem;
     outline: none;
-    box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 37%);
+    box-shadow: 0 0 4vh rgba(0 0 0 / 37%);
     cursor: pointer;
 
     /* Transitions for smooth hover and active states */
@@ -125,10 +126,10 @@ nav {
 
 /* child element: image in menu toggle */
 #nav-toggle > img {
-    width: 1.7rem;
+    width: 2vmin;
     height: auto;
     aspect-ratio: initial;
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%; /* center */
     transform: translate(-50%, -50%) scale(0.9);
@@ -142,9 +143,9 @@ nav {
 
 /* Image track container */
 .image-track {
-    pointer-events: none;
+    pointer-events: none; /* no interactions with track */
     display: flex;
-    gap: 4vmin;
+    gap: 4vmin; /* spacing between inner parts */
     position: absolute;
     left: 50%;
     bottom: -100%;
@@ -157,7 +158,7 @@ nav {
 
 /* Images inside image track */
 .image-track .image {
-    width: 40vmin;
+    width: 40vmin; /* 40% of smaller of w/h */
     height: 56vmin;
     object-fit: cover;
     object-position: 100% center;
@@ -168,16 +169,20 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4vmin;
+    gap: 2vmin;
     position: relative;
     height: 56vmin;
 }
 
-.image-label {
-    color: white;
-    font-size: 1rem;
+.label {
+    font-family: Avenir, sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    color: cadetblue;
+    font-size: clamp(20px, 2vmin, 4vmin);
     text-decoration: none;
-    margin-top: 0.5rem;
+    text-transform: lowercase;
+    letter-spacing: .5vmin;
 }
 
 /* BUTTON CHANGES */
@@ -231,7 +236,8 @@ body[data-nav="true"]:not([data-button-clicked="true"]) > main {
 
 /* Nav links up */
 body[data-nav="true"]:not([data-button-clicked="true"]) > nav > #nav-links {
-    transform: translateY(-50%) scale(1);
+    /* Calculate the translateY value based on the main translateY value */
+    transform: translateY(0) scale(1);
 }
 
 /* --- Button Clicked */
