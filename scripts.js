@@ -39,10 +39,13 @@ const toggleButtonClicked = (buttonType) => {
     // Get all the track divs
     const tracks = document.querySelectorAll('.image-track');
 
-    // Hide all the track divs
-    tracks.forEach(track => {
-        track.style.display = 'none';
-    });
+    setTimeout(() => {
+        // Hide all the track divs
+        tracks.forEach(track => {
+            track.style.display = 'none';
+        });
+    }, 1100);
+
 
     // Get the track div corresponding to the button that was clicked
     let selectedTrack;
@@ -54,11 +57,15 @@ const toggleButtonClicked = (buttonType) => {
         selectedTrack = document.getElementById('about');
     }
 
-    // Use the appropriate div
-    if (selectedTrack) {
-        selectedTrack.style.display = 'flex';
-        track = selectedTrack; // Update the 'track' variable
-    }
+    // Delay the display of the new track until after the previous one's animation is finished
+    setTimeout(() => {
+        // Use the appropriate div
+        if (selectedTrack) {
+            selectedTrack.style.display = 'flex';
+            track = selectedTrack; // Update the 'track' variable
+        }
+    }, 1100); // Delay the execution of the code for 1100ms to allow the previous track to finish its animation
+
 
 }
 
