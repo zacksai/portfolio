@@ -35,9 +35,9 @@ nav {
 .custom-cursor {
     position: fixed;
     display: none;
-    width: 2vw;
-    height: 2vw;
-    border: .2vw solid black;
+    width: 2vmin;
+    aspect-ratio: 1;
+    border: .2vmin solid black;
     background-color: rgba(210, 232, 245, .5);
     border-radius: 50%;
     pointer-events: none;
@@ -80,7 +80,7 @@ nav {
 #nav-links > .nav-link > .nav-link-label {
     color: white;
     font-family: Avenir, sans-serif;
-    font-size: 1.17vh;
+    font-size: 2vh;
     text-transform: lowercase;
     letter-spacing: 3px; /* space between letters */
 }
@@ -96,7 +96,7 @@ nav {
 
 /* Navigation toggle button */
 #nav-toggle {
-    height: 5rem;
+    height: 3.5rem;
     width: auto;
     position: fixed;
     aspect-ratio: 1.77;
@@ -142,14 +142,13 @@ nav {
 
 /* Image track container */
 .image-track {
-    pointer-events: auto; /* no interactions with track */
+    pointer-events: auto;
     display: flex;
     gap: 4vmin; /* spacing between inner parts */
     position: absolute;
     left: 50%;
-    bottom: -56vmin;
+    bottom: -100%;
     height: 56vmin;
-    /*transform: translate(0, -50%);*/
     user-select: none; /* Prevent image highlighting */
     z-index: 4;
     transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97), transform 1100ms cubic-bezier(.83, .3, .38, .97);
@@ -261,7 +260,8 @@ body[data-nav="true"][data-button-clicked="true"] > #nav-toggle {
 
 /* Show the image track when a button is clicked */
 body[data-button-clicked="true"] > .image-track {
-    transform: translateY(calc(-50vh - 28vmin));
+    bottom: 0;
+    transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97);
 }
 
 
@@ -269,15 +269,24 @@ body[data-button-clicked="true"] > .image-track {
 
 /* Nav toggle down */
 body:not([data-nav="true"])[data-button-clicked="true"] > #nav-toggle {
-    transform: translateX(-50%) translateY( calc(-70vh + 4rem)) scale(1);
+    transform: translateX(-50%) translateY(calc(-70vh + 4rem)) scale(1);
     transition: transform 900ms cubic-bezier(.13, .53, .38, .97);
 }
 
 /* Nav links down */
 body:not([data-nav="true"])[data-button-clicked="true"] > nav > #nav-links {
-    transform: translateY( calc(-70vh + 2rem)) scale(1);
+    transform: translateY(calc(-70vh + 2rem)) scale(1);
     transition: transform 800ms cubic-bezier(.83, .3, .38, .97);
 }
+
+
+/* image track down */
+body:not([data-nav="true"])[data-button-clicked="true"] > .image-track {
+    bottom: calc(-50vh + 28vmin);
+    transform: none;
+    transition: bottom 900ms cubic-bezier(.13, .53, .38, .97), transform 900ms cubic-bezier(.13, .53, .38, .97);
+}
+
 
 /* keep main up lol */
 body:not([data-nav="true"])[data-button-clicked="true"] > main {
