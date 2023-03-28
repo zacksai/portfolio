@@ -1,5 +1,5 @@
 // CONTROLS: check for toggle of nav or button clicked, update state accordingly
-const toggleNav = () => {
+const toggleNav = (buttonType) => {
     // toggle when clicked (if it's true, set it to false, else set it to true)
     document.body.dataset.nav = document.body.dataset.nav === "true" ? "false" : "true";
 
@@ -15,7 +15,7 @@ const toggleNav = () => {
     }
 }
 
-const toggleButtonClicked = () => {
+const toggleButtonClicked = (buttonType) => {
     // toggle when clicked (if it's true, set it to false, else set it to true)
     document.body.dataset.buttonClicked = document.body.dataset.buttonClicked === "true" ? "false" : "true";
 
@@ -25,13 +25,11 @@ const toggleButtonClicked = () => {
         // move to state 3, reset button to true (both nav & bc should be true)
         document.body.dataset.state = "S3";
         document.body.dataset.buttonClicked = "true";
-
         // "immerse"
     } else if (document.body.dataset.state == "S4") {
         document.body.dataset.state = "S3";
         document.body.dataset.nav = "true";
         document.body.dataset.buttonClicked = "true";
-
     }
 }
 
@@ -84,3 +82,35 @@ window.onmouseup = e => handleOnUp(e);
 window.ontouchend = e => handleOnUp(e.touches[0]);
 window.onmousemove = e => handleOnMove(e);
 window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+
+// Get the custom cursor element
+const customCursor = document.querySelector(".custom-cursor");
+
+// Update the custom cursor position
+const updateCursorPosition = (e) => {
+    customCursor.style.left = `${e.clientX}px`;
+    customCursor.style.top = `${e.clientY}px`;
+};
+
+// Show the custom cursor and hide the default cursor
+const showCustomCursor = () => {
+    customCursor.style.display = "block";
+    document.body.style.cursor = "none";
+};
+
+// Hide the custom cursor and show the default cursor
+const hideCustomCursor = () => {
+    customCursor.style.display = "none";
+    document.body.style.cursor = "default";
+};
+
+// Add event listeners for image hover
+const images = document.querySelectorAll("#image-track .image");
+images.forEach((image) => {
+    image.addEventListener("mouseenter", showCustomCursor);
+    image.addEventListener("mouseleave", hideCustomCursor);
+});
+
+// Update the custom cursor position on mousemove
+window.addEventListener("mousemove", updateCursorPosition);
