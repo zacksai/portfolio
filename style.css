@@ -141,7 +141,7 @@ nav {
 }
 
 /* Image track container */
-#image-track {
+.image-track {
     pointer-events: none;
     display: flex;
     gap: 4vmin;
@@ -156,7 +156,7 @@ nav {
 }
 
 /* Images inside image track */
-#image-track > .image {
+.image-track > .image {
     width: 40vmin;
     height: 56vmin;
     object-fit: cover;
@@ -240,7 +240,7 @@ body[data-nav="true"][data-button-clicked="true"] > #nav-toggle {
 }
 
 /* Show the image track when a button is clicked */
-body[data-button-clicked="true"] > #image-track {
+body[data-button-clicked="true"] > .image-track {
     bottom: 0%;
     transform: translateY(-50%);
 }
