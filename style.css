@@ -21,6 +21,23 @@ main {
     transition: transform 500ms cubic-bezier(.13, .53, .38, .97);
 }
 
+h1 {
+    font-family: Didot, serif;
+    font-weight: normal;
+    font-size: 55px;
+    letter-spacing: 0.13em;
+    text-transform: lowercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+[data-nav="true"] h1 {
+    opacity: 0;
+}
 /* Navigation */
 
 /* nav bar container */
@@ -147,7 +164,7 @@ nav {
     gap: 4vmin; /* spacing between inner parts */
     position: absolute;
     left: 50%;
-    bottom: -100%;
+    bottom: -99%;
     height: 56vmin;
     user-select: none; /* Prevent image highlighting */
     z-index: 4;
