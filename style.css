@@ -38,6 +38,7 @@ h1 {
 [data-nav="true"] h1 {
     opacity: 0;
 }
+
 /* Navigation */
 
 /* nav bar container */
@@ -161,12 +162,13 @@ nav {
 .image-track {
     pointer-events: auto;
     display: flex;
-    gap: 4vmin; /* spacing between inner parts */
+    gap: 8vmin; /* spacing between inner parts */
     position: absolute;
     left: 50%;
-    bottom: -99%;
+    bottom: -100%;
     height: 56vmin;
     user-select: none; /* Prevent image highlighting */
+    border: 5px white;
     z-index: 2;
     transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97), transform 1100ms cubic-bezier(.83, .3, .38, .97);
 }
@@ -193,11 +195,41 @@ nav {
     font-family: Avenir, sans-serif;
     font-style: italic;
     font-weight: lighter;
-    color: cadetblue;
+    color: white;
     font-size: clamp(20px, 2vmin, 4vmin);
-    text-decoration: none;
-    text-transform: lowercase;
-    letter-spacing: .5vmin;
+}
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#progress {
+  width: 50px;
+  height: 50px;
+  border: 5px solid black;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#content {
+  display: none;
 }
 
 /* BUTTON CHANGES */

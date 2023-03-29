@@ -1,3 +1,7 @@
+window.onload = function() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
 // CONTROLS: check for toggle of nav or button clicked, update state accordingly
 const toggleNav = () => {
     // toggle when clicked (if it's true, set it to false, else set it to true)
