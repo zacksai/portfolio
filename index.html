@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--head info-->
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css"> <!-- specifies stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 
-<body data-nav="false" data-button-clicked="false" data-state="S1" data-immersed="false">
-<div id="loader">
-    <div id="progress"></div>
-</div>
+<!--body info-->
+<body data-nav="false" data-button-clicked="false" data-state="S1">
 
-<!-- Page content -->
-<div id="content">
-    <!-- Your webpage content here -->
+<!--misc-->
+<div id = "loader">
+    <div id = "progress"></div>
 </div>
-
 <div class="custom-cursor"></div>
 
+<!--top: main-->
 <main>
     <h1>Zack Sai</h1>
 </main>
-<button id="nav-toggle" type="button" onclick="toggleNav()">
 
-    <!-- This is a button element with an id, a type, and an onclick attribute. -->
+<!--middle: nav + button-->
+<nav>
+    <!--    navigation links -->
+    <div id="nav-links">
+        <button class="nav-link" type="button" onclick="toggleButtonClicked('projects');">
+            <h2 class="nav-link-label">projects</h2>
+            <img class="nav-link-image" src="png/FilmPic2.png" draggable="false" alt="projects_pic"/>
+        </button>
+        <button class="nav-link" type="button" onclick="toggleButtonClicked('film')">
+            <h2 class="nav-link-label">film</h2>
+            <img class="nav-link-image" src="png/FilmPic4.png" draggable="false" alt="film_pic"/>
+        </button>
+        <button class="nav-link" type="button" onclick="toggleButtonClicked('info')">
+            <h2 class="nav-link-label">info</h2>
+            <img class="nav-link-image" src="png/FilmPic3.png" draggable="false" alt="info_pic"/>
+        </button>
+    </div>
+</nav>
+
+<!--nav toggle button-->
+<button id="nav-toggle" type="button" onclick="toggleNav()">
     <img class="openUp" src="png/chevron.up.png" alt="Open Icon"/>
     <img class="done" src="png/checkmark.png" alt="Close Icon"/>
     <img class="openDown" src="png/chevron.down.png" alt="Open Icon"/>
 </button>
 
-<nav> <!-- navigation element with links -->
-    <div id="nav-links" data-display="false">
-        <button class="nav-link" type="button" onclick="toggleButtonClicked('projects');">
-            <h2 class="nav-link-label">projects</h2>
-            <img class="nav-link-image" src="png/FilmPic2.png" draggable="false"/>
-        </button>
-        <button class="nav-link" type="button" onclick="toggleButtonClicked('film')">
-            <h2 class="nav-link-label">film</h2>
-            <img class="nav-link-image" src="png/FilmPic4.png" draggable="false"/>
-        </button>
-        <button class="nav-link" type="button" onclick="toggleButtonClicked('about')">
-            <h2 class="nav-link-label">info</h2>
-            <img class="nav-link-image" src="png/FilmPic3.png" draggable="false"/>
-        </button>
-    </div>
-</nav>
-
-
-</body>
-
-
-<!--    Create Div for photography -->
-
-<div class="image-track" id="film" data-mouse-down-at="0" data-prev-percentage="0">
+<!--bottom: content-->
+<div class="image-track" id="film" data-mouse-down-at="0" data-prev-percentage="0" data-percentage="0">
     <img class="image" src="png/FilmPic1.png" draggable="false"/>
     <img class="image" src="png/FilmPic2.png" draggable="false"/>
     <img class="image" src="png/FilmPic3.png" draggable="false"/>
@@ -64,8 +59,7 @@
     <img class="image" src="png/FilmPic7.png" draggable="false"/>
     <img class="image" src="png/FilmPic8.png" draggable="false"/>
 </div>
-
-<div class="image-track" id="projects" data-mouse-down-at="0" data-prev-percentage="0">
+<div class="image-track" id="projects" data-mouse-down-at="0" data-prev-percentage="0" data-percentage="0">
     <div class="image-container">
         <img class="image" src="png/Project-Quant.png" draggable="false"/>
         <a href="https://www.figma.com/file/4OIzV4UhPMgFmkCCkwgTh5/QSC-Project?node-id=0%3A1&t=QK4STd7PG20VwQZz-1"
@@ -86,13 +80,14 @@
            class="label">UX Avatar Assignment</a>
     </div>
 </div>
-
-
-<div class="image-track" id="about" data-mouse-down-at="0" data-prev-percentage="0">
+<div class="image-track" id="info" data-mouse-down-at="0" data-prev-percentage="0" data-percentage="0">
     <img class="image" src="png/info.png" draggable="false"/>
 </div>
 
 
+</body>
+
+<!-- connect scripts-->
 <script src="scripts.js"></script>
 
 </html>

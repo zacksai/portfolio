@@ -1,8 +1,9 @@
+// Loading circle at beginning of page
 window.onload = function() {
   document.getElementById("loader").style.display = "none";
-  document.getElementById("content").style.display = "block";
 }
-// CONTROLS: check for toggle of nav or button clicked, update state accordingly
+
+// State machine updates when nav button is toggled
 const toggleNav = () => {
     // toggle when clicked (if it's true, set it to false, else set it to true)
     document.body.dataset.nav = document.body.dataset.nav === "true" ? "false" : "true";
@@ -19,62 +20,52 @@ const toggleNav = () => {
     }
 }
 
-// Initialize the 'track' variable with the initially visible track
-let track = document.getElementById("film");
+// Store image-tracks and selected track
+const tracks = document.querySelectorAll(".image-track");
+let selectedTrack = document.getElementById('film')
 
+// State Machine updates when nav buttons are pressed
 const toggleButtonClicked = (buttonType) => {
     // toggle when clicked (if it's true, set it to false, else set it to true)
     document.body.dataset.buttonClicked = document.body.dataset.buttonClicked === "true" ? "false" : "true";
 
     // move to appropriate state, read "when button is clicked in each state, go to this state"
     if (document.body.dataset.state == "S2") { // "immerse"
-
         // move to state 3, reset button to true (both nav & bc should be true)
         document.body.dataset.state = "S3";
         document.body.dataset.buttonClicked = "true";
-        // "immerse"
     } else if (document.body.dataset.state == "S4") {
         document.body.dataset.state = "S3";
         document.body.dataset.nav = "true";
         document.body.dataset.buttonClicked = "true";
     }
 
-    // Add code here: use appropriate div and make others hidden.
-    // Get all the track divs
-    const tracks = document.querySelectorAll('.image-track');
-
+    // Hide all tracks after animations complete
     setTimeout(() => {
-        // Hide all the track divs
         tracks.forEach(track => {
             track.style.display = 'none';
         });
     }, 1100);
 
-
-    // Get the track div corresponding to the button that was clicked
-    let selectedTrack;
+    // Update selected track based on button clicked
     if (buttonType === 'projects') {
         selectedTrack = document.getElementById('projects');
     } else if (buttonType === 'film') {
         selectedTrack = document.getElementById('film');
-    } else if (buttonType === 'about') {
-        selectedTrack = document.getElementById('about');
+    } else if (buttonType === 'info') {
+        selectedTrack = document.getElementById('info');
     }
 
-    // Delay the display of the new track until after the previous one's animation is finished
+    // Make the selected track visible after animations complete
     setTimeout(() => {
-        // Use the appropriate div
+        // Only update the selected track
         if (selectedTrack) {
             selectedTrack.style.display = 'flex';
             track = selectedTrack; // Update the 'track' variable
         }
-    }, 1100); // Delay the execution of the code for 1100ms to allow the previous track to finish its animation
-
+    }, 1100); // Delay the execution of the code for 1100ms to allow the previous track to finish its animation up
 
 }
-
-// Get all image tracks
-const tracks = document.querySelectorAll(".image-track");
 
 // Store X on press
 const handleOnDown = (e) => {
@@ -114,11 +105,10 @@ const handleOnMove = (e) => {
         // Animate transformation
         track.animate(
             {
-                transform: `translate(${nextPercentage}%, -50%)`,
+                transform: `translate(${nextPercentage}%, 0%)`,
             },
             {duration: 1200, fill: "forwards"}
         );
-
         for (const image of track.getElementsByClassName("image")) {
             image.animate(
                 {
