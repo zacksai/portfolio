@@ -73,7 +73,6 @@ const toggleButtonClicked = (buttonType) => {
         document.body.dataset.nav = "true";
         document.body.dataset.buttonClicked = "true";
     }
-
 }
 
 // Store X on press

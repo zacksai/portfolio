@@ -169,7 +169,7 @@ body[data-state="S4"] > nav {
 
 /* child element: image in menu toggle */
 #nav-toggle > img {
-    width: 1.97vh;
+    width: 1.5vh;
     height: auto;
     position: absolute;
     aspect-ratio: initial;
@@ -243,7 +243,7 @@ body[data-state="S4"] #nav-toggle {
     pointer-events: auto;
 }
 
-/* Link + Image container */
+/* Project link + Image container */
 .image-container {
     display: flex;
     flex-direction: column;
@@ -258,8 +258,26 @@ body[data-state="S4"] #nav-toggle {
     font-family: Avenir, sans-serif;
     font-style: italic;
     font-weight: lighter;
+    letter-spacing: .5px;
     color: white;
     font-size: clamp(20px, 2vmin, 4vmin);
+}
+/* Project link + Image container */
+.link-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vmin;
+    position: relative;
+}
+
+/* Links under info */
+.social {
+    font-family: Avenir, sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    color: white;
+    font-size: clamp(20px, 1vmin, 4vmin);
 }
 
 /* IMAGE TRACK ANIMATIONS */
