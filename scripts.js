@@ -1,15 +1,70 @@
 // Loading circle at beginning of page
 window.onload = function () {
     document.getElementById("loader").style.display = "none";
+    animateNavToggle();
+}
+
+// mouse over toggle listeners
+let isMouseOverNavToggle = false;
+let firstHover = false;
+const navToggle = document.getElementById("nav-toggle");
+const openIcon = document.querySelector(".openUp");
+
+// Add event listeners to detect hover state
+navToggle.addEventListener("mouseenter", () => {
+    isMouseOverNavToggle = true;
+    firstHover = true;
+});
+navToggle.addEventListener("mouseleave", () => {
+    isMouseOverNavToggle = false;
+    // reset when mouse leaves nav toggle after it has entered on prompt
+    navToggle.style.transform = "scale(1)";
+    openIcon.style.opacity = "0";
+});
+
+// Prompt nav-toggle after a bit
+function animateNavToggle() {
+
+    // prompt after a bit
+    setTimeout(() => {
+
+        // only execute if first hover hasn't happened
+        if (!firstHover) {
+            navToggle.style.transform = "scale(1.17)";
+            openIcon.style.opacity = "1";
+        }
+        // reset it after a second if mouse has left
+        setTimeout(() => {
+            if (!isMouseOverNavToggle) {
+                navToggle.style.transform = "scale(1)";
+                openIcon.style.opacity = "0";
+            }
+            // add another event listener to apply the hover styling again
+            navToggle.addEventListener("mouseenter", () => {
+                navToggle.style.transform = "scale(1.17)";
+                if (document.body.dataset.state == "S1" || document.body.dataset.state == "S4") {
+                    openIcon.style.opacity = "1";
+
+                }
+            });
+        }, 1500);
+
+    }, 100);
+
 }
 
 // State machine updates when nav button is toggled
 const toggleNav = () => {
+
     // toggle when clicked (if it's true, set it to false, else set it to true)
     document.body.dataset.nav = document.body.dataset.nav === "true" ? "false" : "true";
 
     // move to appropriate state, read "when toggle is clicked in each state, go to this state"
     if (document.body.dataset.state == "S1") {
+        // update open icon if it was set to 1 from prompt
+        if (openIcon.style.opacity == "1") {
+            openIcon.style.opacity = "0";
+        }
         document.body.dataset.state = "S2";
     } else if (document.body.dataset.state == "S2") {
         document.body.dataset.state = "S1";
@@ -76,12 +131,12 @@ const toggleButtonClicked = (buttonType) => {
 }
 
 // Store X on press
-const handleOnDown = (e) => {
+const handleOnTouchDown = (e) => {
     tracks.forEach((track) => (track.dataset.mouseDownAt = e.clientX));
 };
 
 // Store percentage, reset mouse down
-const handleOnUp = () => {
+const handleOnTouchUp = () => {
     tracks.forEach((track) => {
         track.dataset.mouseDownAt = "0";
         track.dataset.prevPercentage = track.dataset.percentage;
@@ -89,7 +144,7 @@ const handleOnUp = () => {
 };
 
 // Calculate % based off movement and transform
-const handleOnMove = (e) => {
+const handleOnTouchMove = (e) => {
     tracks.forEach((track) => {
         // Do nothing at 0
         if (track.dataset.mouseDownAt === "0") return;
@@ -129,12 +184,12 @@ const handleOnMove = (e) => {
 };
 
 // listeners
-window.onmousedown = (e) => handleOnDown(e);
-window.ontouchstart = (e) => handleOnDown(e.touches[0]);
-window.onmouseup = (e) => handleOnUp(e);
-window.ontouchend = (e) => handleOnUp(e.touches[0]);
-window.onmousemove = (e) => handleOnMove(e);
-window.ontouchmove = (e) => handleOnMove(e.touches[0]);
+window.onpointerdown = (e) => handleOnTouchDown(e);
+window.ontouchstart = (e) => handleOnTouchDown(e.touches[0]);
+window.onpointerup = (e) => handleOnTouchUp(e);
+window.ontouchend = (e) => handleOnTouchUp(e.touches[0]);
+window.onpointermove = (e) => handleOnTouchMove(e);
+window.ontouchmove = (e) => handleOnTouchMove(e.touches[0]);
 
 // Get the custom cursor element
 const customCursor = document.querySelector(".custom-cursor");
@@ -157,12 +212,13 @@ const hideCustomCursor = () => {
     document.body.style.cursor = "default";
 };
 
-// Add event listeners for image hover
-const images = document.querySelectorAll(".image-track .image");
-images.forEach((image) => {
-    image.addEventListener("mouseenter", showCustomCursor);
-    image.addEventListener("mouseleave", hideCustomCursor);
-});
+if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    const images = document.querySelectorAll(".image-track .image");
+    images.forEach((image) => {
+        image.addEventListener("mouseenter", showCustomCursor);
+        image.addEventListener("mouseleave", hideCustomCursor);
+    });
+}
 
 // Update the custom cursor position on mousemove
 window.addEventListener("mousemove", updateCursorPosition);

@@ -1,8 +1,40 @@
+/* disable touch interactions */
+html {
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    overflow: hidden;
+}
+
+
+/* Disable zooming on mobile devices */
+@media only screen and (max-width: 767px) {
+    /* Disable zooming */
+    body {
+        touch-action: pan-y;
+        user-select: none;
+        -webkit-text-size-adjust: none;
+        -moz-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+        max-height: 100vh;
+        overflow-y: hidden;
+    }
+
+    /* Hide the zoom control */
+    /* Note: This may not work on all devices */
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 0;
+        height: 0;
+    }
+}
+
+
 /*black body*/
 body {
     /* sizing */
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: black;
     margin: 0;
     padding: 0;
@@ -20,6 +52,7 @@ main {
     background-image: url("png/FilmPic1.png");
     background-position: center 0%;
     background-size: cover;
+    overflow: hidden;
 
     /* Motion */
     transition: bottom .8s cubic-bezier(.83, .3, .38, .97);
@@ -30,9 +63,11 @@ main {
 body[data-state="S2"] > main {
     bottom: 30vh;
 }
+
 body[data-state="S3"] > main {
     bottom: 100vh;
 }
+
 body[data-state="S4"] > main {
     bottom: 100vh;
 }
@@ -43,7 +78,7 @@ h1 {
     /* font */
     font-family: Didot, serif;
     font-weight: normal;
-    font-size: 55px;
+    font-size: 5vh;
     letter-spacing: 0.13em;
     text-transform: lowercase;
     /* sizing */
@@ -148,11 +183,11 @@ body[data-state="S4"] > nav {
 /* Navigation toggle button */
 #nav-toggle {
     height: 3.5vh;
+    width: 6.2vh;
     bottom: 4vh;
     left: calc(50% - (1.77 * 3.5vh) / 2); /* subtract half of width */
     position: fixed;
     z-index: 2; /* above nav links */
-    aspect-ratio: 1.77;
     background-color: rgba(255, 255, 255, .5);
     border-radius: 5rem;
     box-shadow: 0 0 4vh rgba(0 0 0 / 37%);
@@ -176,7 +211,7 @@ body[data-state="S4"] > nav {
     opacity: 0; /* default to invisible */
 
     /* motion */
-    transition: opacity .5s ease-in-out, transform 500ms cubic-bezier(.13, .53, .38, .97);
+    transition: opacity .5s ease-in-out, trqansform 500ms cubic-bezier(.13, .53, .38, .97);
 }
 
 /* TOGGLE BUTTON ANIMATIONS */
@@ -186,34 +221,38 @@ body[data-state="S4"] > nav {
     background-color: rgba(255, 255, 255, .5);
 }
 
-/* S1: open up symbol on hover */
-body:not([data-nav="true"])[data-state="S1"] #nav-toggle:hover > .openUp {
-    opacity: 1;
-}
+
 /* S2: done symbol, change color */
 body[data-nav="true"][data-state="S2"] #nav-toggle > .done {
     opacity: 1;
 }
+
 body[data-nav="true"][data-state="S2"] #nav-toggle {
     background-color: rgba(130 236 236 /.5);
 }
+
 /* S3: open down symbol, move up*/
 body[data-state="S3"] #nav-toggle:hover > .openUp {
     opacity: 0;
 }
+
 body[data-state="S3"] #nav-toggle:hover > .openDown {
     opacity: 1;
 }
+
 body[data-state="S3"] #nav-toggle {
     bottom: 92.5vh; /* symmetric to height + bottom */
 }
+
 /* S4: open up symbol, move down */
 body[data-state="S4"] #nav-toggle:hover > .openUp {
     opacity: 1;
 }
+
 body[data-state="S4"] #nav-toggle:hover > .openDown {
     opacity: 0;
 }
+
 body[data-state="S4"] #nav-toggle {
     bottom: 72.5vh; /* symmetric to height + bottom */
     background-color: rgba(130 236 236 /.5);
@@ -262,6 +301,7 @@ body[data-state="S4"] #nav-toggle {
     color: white;
     font-size: clamp(20px, 2vmin, 4vmin);
 }
+
 /* Project link + Image container */
 .link-container {
     display: flex;
@@ -285,6 +325,7 @@ body[data-state="S4"] #nav-toggle {
 body[data-state="S3"] .image-track {
     bottom: calc(50vh - 28vmin);
 }
+
 body[data-state="S4"] .image-track {
     bottom: calc(30vh - 28vmin);
 }
@@ -303,31 +344,31 @@ body[data-state="S4"] .image-track {
 }
 
 #loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #progress {
-  width: 50px;
-  height: 50px;
-  border: 5px solid black;
-  border-top-color: #3498db;
-  border-radius: 50%;
-  animation: spin 1s ease-in-out infinite;
+    width: 50px;
+    height: 50px;
+    border: 5px solid black;
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

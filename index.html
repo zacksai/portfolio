@@ -5,17 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="png/z.square.fill.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="png/shortcutIcon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="png/icon.png">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=0">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XBZV5YZR9N"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-XBZV5YZR9N');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-XBZV5YZR9N');
 </script>
 
 <!--body info-->
@@ -52,7 +57,7 @@
 </nav>
 
 <!--nav toggle button-->
-<button id="nav-toggle" type="button" onclick="toggleNav()">
+<button id="nav-toggle" type="button"  onclick="toggleNav()">
     <img class="openUp" src="png/chevron.up.png" alt="Open Icon"/>
     <img class="done" src="png/checkmark.png" alt="Close Icon"/>
     <img class="openDown" src="png/chevron.down.png" alt="Open Icon"/>
