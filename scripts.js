@@ -169,7 +169,7 @@ const handleOnTouchMove = (e) => {
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
             track.animate(
                 {
-                    transform: `translate(${nextPercentage}%, 0%)`,
+                    transform: `translate(${nextPercentage*.5}%, 0%)`,
                 },
                 {duration: 1200, fill: "forwards"}
             );
@@ -184,7 +184,7 @@ const handleOnTouchMove = (e) => {
         } else {
             // Animate transformation
             const animate = () => {
-                track.style.transform = `translate(${nextPercentage}%, 0%)`;
+                track.style.transform = `translate(${nextPercentage*.5}%, 0%)`;
                 for (const image of track.getElementsByClassName("image")) {
                     image.style.objectPosition = `${100 + nextPercentage}% center`;
                 }
