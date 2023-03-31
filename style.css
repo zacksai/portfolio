@@ -33,8 +33,8 @@ html {
 /*black body*/
 body {
     /* sizing */
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background-color: black;
     margin: 0;
     padding: 0;
@@ -171,12 +171,14 @@ body[data-state="S2"] > nav {
     bottom: 0;
     transform: scale(1);
 }
+
 body[data-state="S3"] > nav {
     bottom: 100vh;
     transform: scale(.75);
 }
+
 body[data-state="S4"] > nav {
-    bottom: 70vh;
+    bottom: 58vh;
     transform: scale(1);
 }
 
@@ -241,7 +243,7 @@ body[data-state="S3"] #nav-toggle:hover > .openDown {
 }
 
 body[data-state="S3"] #nav-toggle {
-    bottom: 92.5vh; /* symmetric to height + bottom */
+    bottom: 80.5vh; /* symmetric to height + bottom */
 }
 
 /* S4: open up symbol, move down */
@@ -254,29 +256,30 @@ body[data-state="S4"] #nav-toggle:hover > .openDown {
 }
 
 body[data-state="S4"] #nav-toggle {
-    bottom: 72.5vh; /* symmetric to height + bottom */
+    bottom: 60.5vh; /* symmetric to height + bottom */
     background-color: rgba(130 236 236 /.5);
 }
 
 /* Image track container */
 .image-track {
     pointer-events: auto;
+
     cursor: none;
     display: flex;
-    gap: 8vmin; /* spacing between inner parts */
+    gap: 10vmin; /* spacing between inner parts */
     position: absolute;
     z-index: 3;
     left: 50%;
-    bottom: -56vmin;
-    height: 56vmin;
+    bottom: -63vh;
+    height: 63vh;
     user-select: none; /* Prevent image highlighting */
     transition: bottom 1200ms cubic-bezier(.83, .3, .38, .97);
 }
 
 /* Images inside image track */
 .image-track .image {
-    width: 40vmin;
-    height: 56vmin;
+    width: 37vh;
+    height: 63vh;
     object-fit: cover;
     object-position: 100% center;
     pointer-events: auto;
@@ -285,11 +288,11 @@ body[data-state="S4"] #nav-toggle {
 /* Project link + Image container */
 .image-container {
     display: flex;
+    height: 63vh;
     flex-direction: column;
     align-items: center;
     gap: 2vmin;
     position: relative;
-    height: 56vmin;
 }
 
 /* Link under projects */
@@ -323,11 +326,11 @@ body[data-state="S4"] #nav-toggle {
 /* IMAGE TRACK ANIMATIONS */
 /* up to center on 3, down a bit on 4 */
 body[data-state="S3"] .image-track {
-    bottom: calc(50vh - 28vmin);
+    bottom: calc(45vh - 31.5vh);
 }
 
 body[data-state="S4"] .image-track {
-    bottom: calc(30vh - 28vmin);
+    bottom: calc(25vh - 31.5vh);
 }
 
 /* Custom cursor, loading circle */

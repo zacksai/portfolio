@@ -165,21 +165,33 @@ const handleOnTouchMove = (e) => {
         // Store %
         track.dataset.percentage = nextPercentage;
 
-        // Animate transformation
-        track.animate(
-            {
-                transform: `translate(${nextPercentage}%, 0%)`,
-            },
-            {duration: 1200, fill: "forwards"}
-        );
-        for (const image of track.getElementsByClassName("image")) {
-            image.animate(
+        // Animate transformation differently on mobile and desktop (smooth)
+        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+            track.animate(
                 {
-                    objectPosition: `${100 + nextPercentage}% center`,
+                    transform: `translate(${nextPercentage}%, 0%)`,
                 },
                 {duration: 1200, fill: "forwards"}
             );
+            for (const image of track.getElementsByClassName("image")) {
+                image.animate(
+                    {
+                        objectPosition: `${100 + nextPercentage}% center`,
+                    },
+                    {duration: 1200, fill: "forwards"}
+                );
+            }
+        } else {
+            // Animate transformation
+            const animate = () => {
+                track.style.transform = `translate(${nextPercentage}%, 0%)`;
+                for (const image of track.getElementsByClassName("image")) {
+                    image.style.objectPosition = `${100 + nextPercentage}% center`;
+                }
+            };
+            requestAnimationFrame(animate);
         }
+
     });
 };
 
