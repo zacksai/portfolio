@@ -76,7 +76,7 @@ const toggleNav = () => {
 }
 
 // Store image-tracks and selected track
-const tracks = document.querySelectorAll(".image-track");
+const tracks = document.querySelectorAll(".image-track"); // change me
 let selectedTrack = document.getElementById('film')
 let firstTime = true;
 
@@ -169,7 +169,7 @@ const handleOnTouchMove = (e) => {
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
             track.animate(
                 {
-                    transform: `translate(${nextPercentage*.5}%, 0%)`,
+                    transform: `translate(${nextPercentage}%, 0%)`,
                 },
                 {duration: 1200, fill: "forwards"}
             );
@@ -184,7 +184,7 @@ const handleOnTouchMove = (e) => {
         } else {
             // Animate transformation
             const animate = () => {
-                track.style.transform = `translate(${nextPercentage*.5}%, 0%)`;
+                track.style.transform = `translate(${nextPercentage}%, 0%)`;
                 for (const image of track.getElementsByClassName("image")) {
                     image.style.objectPosition = `${100 + nextPercentage}% center`;
                 }
@@ -202,35 +202,3 @@ window.onpointerup = (e) => handleOnTouchUp(e);
 window.ontouchend = (e) => handleOnTouchUp(e.touches[0]);
 window.onpointermove = (e) => handleOnTouchMove(e);
 window.ontouchmove = (e) => handleOnTouchMove(e.touches[0]);
-
-// Get the custom cursor element
-const customCursor = document.querySelector(".custom-cursor");
-
-// Update the custom cursor position
-const updateCursorPosition = (e) => {
-    customCursor.style.left = `${e.clientX}px`;
-    customCursor.style.top = `${e.clientY}px`;
-};
-
-// Show the custom cursor and hide the default cursor
-const showCustomCursor = () => {
-    customCursor.style.display = "block";
-    document.body.style.cursor = "none";
-};
-
-// Hide the custom cursor and show the default cursor
-const hideCustomCursor = () => {
-    customCursor.style.display = "none";
-    document.body.style.cursor = "default";
-};
-
-if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-    const images = document.querySelectorAll(".image-track .image");
-    images.forEach((image) => {
-        image.addEventListener("mouseenter", showCustomCursor);
-        image.addEventListener("mouseleave", hideCustomCursor);
-    });
-}
-
-// Update the custom cursor position on mousemove
-window.addEventListener("mousemove", updateCursorPosition);
