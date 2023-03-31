@@ -130,27 +130,26 @@ const toggleButtonClicked = (buttonType) => {
     }
 }
 
+const filmReel = document.getElementById('film');
+
 // Store X on press
 const handleOnTouchDown = (e) => {
-    tracks.forEach((track) => (track.dataset.mouseDownAt = e.clientX));
+    filmReel.dataset.mouseDownAt = e.clientX
 };
 
 // Store percentage, reset mouse down
 const handleOnTouchUp = () => {
-    tracks.forEach((track) => {
-        track.dataset.mouseDownAt = "0";
-        track.dataset.prevPercentage = track.dataset.percentage;
-    });
+        filmReel.dataset.mouseDownAt = "0";
+        filmReel.dataset.prevPercentage = filmReel.dataset.percentage;
 };
 
 // Calculate % based off movement and transform
 const handleOnTouchMove = (e) => {
-    tracks.forEach((track) => {
         // Do nothing at 0
-        if (track.dataset.mouseDownAt === "0") return;
+        if (filmReel.dataset.mouseDownAt === "0") return;
 
         // Find difference
-        const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+        const mouseDelta = parseFloat(filmReel.dataset.mouseDownAt) - e.clientX,
             maxDelta = window.innerWidth / 2;
 
         // Calculate %
@@ -163,17 +162,17 @@ const handleOnTouchMove = (e) => {
             );
 
         // Store %
-        track.dataset.percentage = nextPercentage;
+        filmReel.dataset.percentage = nextPercentage;
 
         // Animate transformation differently on mobile and desktop (smooth)
         if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-            track.animate(
+            filmReel.animate(
                 {
                     transform: `translate(${nextPercentage}%, 0%)`,
                 },
                 {duration: 1200, fill: "forwards"}
             );
-            for (const image of track.getElementsByClassName("image")) {
+            for (const image of filmReel.getElementsByClassName("image")) {
                 image.animate(
                     {
                         objectPosition: `${100 + nextPercentage}% center`,
@@ -184,15 +183,14 @@ const handleOnTouchMove = (e) => {
         } else {
             // Animate transformation
             const animate = () => {
-                track.style.transform = `translate(${nextPercentage}%, 0%)`;
-                for (const image of track.getElementsByClassName("image")) {
+                filmReel.style.transform = `translate(${nextPercentage}%, 0%)`;
+                for (const image of filmReel.getElementsByClassName("image")) {
                     image.style.objectPosition = `${100 + nextPercentage}% center`;
                 }
             };
             requestAnimationFrame(animate);
         }
 
-    });
 };
 
 // listeners
