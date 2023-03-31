@@ -5,7 +5,6 @@ html {
     overflow: hidden;
 }
 
-
 /* Disable zooming on mobile devices */
 @media only screen and (max-width: 767px) {
     /* Disable zooming */
@@ -29,8 +28,7 @@ html {
     }
 }
 
-
-/*black body*/
+/* setup body */
 body {
     /* sizing */
     height: 100vh;
@@ -49,8 +47,8 @@ main {
     bottom: 0;
     position: fixed;
     /* image */
-    background-image: url("png/FilmPic1.png");
-    background-position: center 0%;
+    background-image: url("png/FilmSantaMonica.png");
+    background-position: center 0;
     background-size: cover;
     overflow: hidden;
 
@@ -63,15 +61,12 @@ main {
 body[data-state="S2"] > main {
     bottom: 30vh;
 }
-
 body[data-state="S3"] > main {
     bottom: 100vh;
 }
-
 body[data-state="S4"] > main {
     bottom: 100vh;
 }
-
 
 /* Title */
 h1 {
@@ -102,7 +97,6 @@ h1 {
 body[data-state="S2"] > main > h1 {
     opacity: 0;
 }
-
 
 /* Navigation */
 nav {
@@ -171,12 +165,10 @@ body[data-state="S2"] > nav {
     bottom: 0;
     transform: scale(1);
 }
-
 body[data-state="S3"] > nav {
     bottom: 100vh;
     transform: scale(.75);
 }
-
 body[data-state="S4"] > nav {
     bottom: 58vh;
     transform: scale(1);
@@ -223,12 +215,10 @@ body[data-state="S4"] > nav {
     background-color: rgba(255, 255, 255, .5);
 }
 
-
 /* S2: done symbol, change color */
 body[data-nav="true"][data-state="S2"] #nav-toggle > .done {
     opacity: 1;
 }
-
 body[data-nav="true"][data-state="S2"] #nav-toggle {
     background-color: rgba(130 236 236 /.5);
 }
@@ -237,11 +227,9 @@ body[data-nav="true"][data-state="S2"] #nav-toggle {
 body[data-state="S3"] #nav-toggle:hover > .openUp {
     opacity: 0;
 }
-
 body[data-state="S3"] #nav-toggle:hover > .openDown {
     opacity: 1;
 }
-
 body[data-state="S3"] #nav-toggle {
     bottom: 80.5vh; /* symmetric to height + bottom */
 }
@@ -250,18 +238,16 @@ body[data-state="S3"] #nav-toggle {
 body[data-state="S4"] #nav-toggle:hover > .openUp {
     opacity: 1;
 }
-
 body[data-state="S4"] #nav-toggle:hover > .openDown {
     opacity: 0;
 }
-
 body[data-state="S4"] #nav-toggle {
     bottom: 60.5vh; /* symmetric to height + bottom */
     background-color: rgba(130 236 236 /.5);
 }
 
 
-/* Image track container */
+/* Film container */
 #film {
     pointer-events: auto;
     cursor: pointer;
@@ -276,7 +262,7 @@ body[data-state="S4"] #nav-toggle {
     transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97);
 }
 
-/* Images inside image track */
+/* Images inside film reel */
 .filmImage {
     width: 37vh;
     height: 63vh;
@@ -285,6 +271,56 @@ body[data-state="S4"] #nav-toggle {
     pointer-events: auto;
 }
 
+/* work container */
+#work {
+    display: flex;
+    gap: 10vmin; /* spacing between inner parts */
+    position: fixed;
+    z-index: 3;
+    bottom: -65vh;
+    height: 65vh;
+    justify-content: space-around;
+    width: 100%;
+    user-select: none; /* Prevent image highlighting */
+    transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97);
+}
+
+/* Work link + image container */
+.work-container {
+    left: 50%;
+    object-fit: contain;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vmin;
+    position: relative;
+
+}
+
+/* Images inside work */
+.workImage {
+    cursor: default;
+    object-position: 100% center;
+    object-fit: contain;
+    pointer-events: auto;
+    max-width: 30vh;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* Link under works */
+.workLink {
+    font-family: Avenir, sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    letter-spacing: .5px;
+    color: white;
+    font-size: clamp(20px, 2vmin, 4vmin);
+    pointer-events: auto;
+
+}
+
+/* info container */
 #info {
     pointer-events: none;
     cursor: pointer;
@@ -301,33 +337,18 @@ body[data-state="S4"] #nav-toggle {
     transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97);
 }
 
-/* Image track container */
-#projects {
-    display: flex;
-    gap: 10vmin; /* spacing between inner parts */
-    position: fixed;
-    z-index: 3;
-    bottom: -65vh;
-    height: 65vh;
-    justify-content: space-around;
-    width: 100%;
-    user-select: none; /* Prevent image highlighting */
-    transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97);
-}
-
-/* Images inside image track */
-.projectImage {
-    cursor: default;
-    object-position: 100% center;
+/* Hold info together */
+.infoWrapper {
     object-fit: contain;
-    pointer-events: auto;
-    max-width: 30vh;
-    max-height: 100%;
-    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vmin;
+    position: relative;
+
 }
 
-
-/* Images inside image track */
+/* image in info page */
 .infoImage {
     cursor: default;
     object-position: 100% center;
@@ -338,42 +359,8 @@ body[data-state="S4"] #nav-toggle {
     overflow: hidden;
 }
 
-/* Project link + Image container */
-.image-container {
-    left: 50%;
-    object-fit: contain;
-    display: inline-flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 3vmin;
-    position: relative;
-
-}
-/* Project link + Image container */
-.info-container {
-    object-fit: contain;
-    display: inline-flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 3vmin;
-    position: relative;
-
-}
-
-/* Link under projects */
-.label {
-    font-family: Avenir, sans-serif;
-    font-style: italic;
-    font-weight: lighter;
-    letter-spacing: .5px;
-    color: white;
-    font-size: clamp(20px, 2vmin, 4vmin);
-    pointer-events: auto;
-
-}
-
-/* Project link + Image container */
-.link-container {
+/* Info link + Image container */
+.linkContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -382,7 +369,7 @@ body[data-state="S4"] #nav-toggle {
 }
 
 /* Links under info */
-.social {
+.socialLink {
     pointer-events: auto;
 
     font-family: Avenir, sans-serif;
@@ -393,33 +380,29 @@ body[data-state="S4"] #nav-toggle {
 }
 
 
-/* IMAGE TRACK ANIMATIONS */
+/* DISPLAY ANIMATIONS */
 /* up to center on 3, down a bit on 4 */
 body[data-state="S3"] #film {
     bottom: calc(45vh - 31.5vh);
 }
-
 body[data-state="S4"] #film {
     bottom: calc(25vh - 31.5vh);
 }
-
-body[data-state="S3"] #projects {
+body[data-state="S3"] #work {
     bottom: calc(45vh - 31.5vh);
 }
-
-body[data-state="S4"] #projects {
+body[data-state="S4"] #work {
     bottom: calc(25vh - 31.5vh);
 }
-
 body[data-state="S3"] #info {
     bottom: calc(45vh - 31.5vh);
 }
-
 body[data-state="S4"] #info {
     bottom: calc(25vh - 31.5vh);
 }
 
 
+/* Progress bar */
 #loader {
     position: fixed;
     top: 0;
