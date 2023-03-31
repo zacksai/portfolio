@@ -131,65 +131,106 @@ const toggleButtonClicked = (buttonType) => {
 }
 
 const filmReel = document.getElementById('film');
+const projectsReel = document.getElementById('projects');
 
 // Store X on press
 const handleOnTouchDown = (e) => {
     filmReel.dataset.mouseDownAt = e.clientX
+    projectsReel.dataset.mouseDownAt = e.clientX
 };
 
 // Store percentage, reset mouse down
 const handleOnTouchUp = () => {
-        filmReel.dataset.mouseDownAt = "0";
-        filmReel.dataset.prevPercentage = filmReel.dataset.percentage;
+    filmReel.dataset.mouseDownAt = "0";
+    filmReel.dataset.prevPercentage = filmReel.dataset.percentage;
+    projectsReel.dataset.mouseDownAt = "0";
+    projectsReel.dataset.prevPercentage = filmReel.dataset.percentage;
 };
 
 // Calculate % based off movement and transform
 const handleOnTouchMove = (e) => {
-        // Do nothing at 0
-        if (filmReel.dataset.mouseDownAt === "0") return;
+    // Do nothing at 0
+    if (filmReel.dataset.mouseDownAt === "0") return;
 
-        // Find difference
-        const mouseDelta = parseFloat(filmReel.dataset.mouseDownAt) - e.clientX,
-            maxDelta = window.innerWidth / 2;
+    // Find difference
+    let mouseDelta = parseFloat(filmReel.dataset.mouseDownAt) - e.clientX,
+        maxDelta = window.innerWidth / 2;
 
-        // Calculate %
-        const percentage = (mouseDelta / maxDelta) * -100,
-            nextPercentageUnconstrained =
-                parseFloat(track.dataset.prevPercentage) + percentage,
-            nextPercentage = Math.max(
-                Math.min(nextPercentageUnconstrained, 0),
-                -100
-            );
+    // Calculate %
+    let percentage = (mouseDelta / maxDelta) * -100,
+        nextPercentageUnconstrained =
+            parseFloat(track.dataset.prevPercentage) + percentage,
+        nextPercentage = Math.max(
+            Math.min(nextPercentageUnconstrained, 0),
+            -100
+        );
 
-        // Store %
-        filmReel.dataset.percentage = nextPercentage;
+    // Store %
+    filmReel.dataset.percentage = nextPercentage;
 
-        // Animate transformation differently on mobile and desktop (smooth)
-        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
-            filmReel.animate(
+    // Animate transformation differently on mobile and desktop (smooth)
+    if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+        filmReel.animate(
+            {
+                transform: `translate(${nextPercentage}%, 0%)`,
+            },
+            {duration: 1200, fill: "forwards"}
+        );
+        for (const image of filmReel.getElementsByClassName("filmImage")) {
+            image.animate(
                 {
-                    transform: `translate(${nextPercentage}%, 0%)`,
+                    objectPosition: `${100 + nextPercentage}% center`,
                 },
                 {duration: 1200, fill: "forwards"}
             );
-            for (const image of filmReel.getElementsByClassName("filmImage")) {
-                image.animate(
-                    {
-                        objectPosition: `${100 + nextPercentage}% center`,
-                    },
-                    {duration: 1200, fill: "forwards"}
-                );
-            }
-        } else {
-            // Animate transformation
-            const animate = () => {
-                filmReel.style.transform = `translate(${nextPercentage}%, 0%)`;
-                for (const image of filmReel.getElementsByClassName("filmImage")) {
-                    image.style.objectPosition = `${100 + nextPercentage}% center`;
-                }
-            };
-            requestAnimationFrame(animate);
         }
+    } else {
+        // Animate transformation
+        const animate = () => {
+            filmReel.style.transform = `translate(${nextPercentage}%, 0%)`;
+            for (const image of filmReel.getElementsByClassName("filmImage")) {
+                image.style.objectPosition = `${100 + nextPercentage}% center`;
+            }
+        };
+        requestAnimationFrame(animate);
+    }
+
+    // repeat for projects reel
+    // Do nothing at 0
+    if (projectsReel.dataset.mouseDownAt === "0") return;
+
+    // Find difference
+    mouseDelta = parseFloat(projectsReel.dataset.mouseDownAt) - e.clientX;
+    maxDelta = window.innerWidth / 2;
+
+    // Calculate %
+    percentage = (mouseDelta / maxDelta) * -100;
+    nextPercentageUnconstrained =
+        parseFloat(track.dataset.prevPercentage) + percentage,
+        nextPercentage = Math.max(
+            Math.min(nextPercentageUnconstrained, 0),
+            -100
+        );
+
+    // Store %
+    projectsReel.dataset.percentage = nextPercentage;
+
+    // Animate transformation differently on mobile and desktop (smooth)
+    if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+        projectsReel.animate(
+            {
+                transform: `translate(${nextPercentage}%, 0%)`,
+            },
+            {duration: 1200, fill: "forwards"}
+        );
+    } else {
+        // Animate transformation
+        const animate = () => {
+            projectsReel.style.transform = `translate(${nextPercentage}%, 0%)`;
+
+        };
+        requestAnimationFrame(animate);
+    }
 
 };
 

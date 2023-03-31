@@ -310,9 +310,7 @@ body[data-state="S4"] #nav-toggle {
     bottom: -65vh;
     height: 65vh;
     justify-content: space-around;
-    object-position: center;
     width: 100%;
-    overflow-x: scroll;
     user-select: none; /* Prevent image highlighting */
     transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97);
 }
@@ -322,7 +320,6 @@ body[data-state="S4"] #nav-toggle {
     cursor: default;
     object-position: 100% center;
     object-fit: contain;
-    left: 50%;
     pointer-events: auto;
     max-width: 30vh;
     max-height: 100%;
@@ -343,6 +340,17 @@ body[data-state="S4"] #nav-toggle {
 
 /* Project link + Image container */
 .image-container {
+    left: 50%;
+    object-fit: contain;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vmin;
+    position: relative;
+
+}
+/* Project link + Image container */
+.info-container {
     object-fit: contain;
     display: inline-flex;
     align-items: center;
@@ -360,7 +368,7 @@ body[data-state="S4"] #nav-toggle {
     letter-spacing: .5px;
     color: white;
     font-size: clamp(20px, 2vmin, 4vmin);
-        pointer-events: auto;
+    pointer-events: auto;
 
 }
 
