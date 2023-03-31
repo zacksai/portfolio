@@ -61,9 +61,11 @@ main {
 body[data-state="S2"] > main {
     bottom: 30vh;
 }
+
 body[data-state="S3"] > main {
     bottom: 100vh;
 }
+
 body[data-state="S4"] > main {
     bottom: 100vh;
 }
@@ -165,10 +167,12 @@ body[data-state="S2"] > nav {
     bottom: 0;
     transform: scale(1);
 }
+
 body[data-state="S3"] > nav {
     bottom: 100vh;
     transform: scale(.75);
 }
+
 body[data-state="S4"] > nav {
     bottom: 58vh;
     transform: scale(1);
@@ -219,6 +223,7 @@ body[data-state="S4"] > nav {
 body[data-nav="true"][data-state="S2"] #nav-toggle > .done {
     opacity: 1;
 }
+
 body[data-nav="true"][data-state="S2"] #nav-toggle {
     background-color: rgba(130 236 236 /.5);
 }
@@ -227,9 +232,11 @@ body[data-nav="true"][data-state="S2"] #nav-toggle {
 body[data-state="S3"] #nav-toggle:hover > .openUp {
     opacity: 0;
 }
+
 body[data-state="S3"] #nav-toggle:hover > .openDown {
     opacity: 1;
 }
+
 body[data-state="S3"] #nav-toggle {
     bottom: 80.5vh; /* symmetric to height + bottom */
 }
@@ -238,9 +245,11 @@ body[data-state="S3"] #nav-toggle {
 body[data-state="S4"] #nav-toggle:hover > .openUp {
     opacity: 1;
 }
+
 body[data-state="S4"] #nav-toggle:hover > .openDown {
     opacity: 0;
 }
+
 body[data-state="S4"] #nav-toggle {
     bottom: 60.5vh; /* symmetric to height + bottom */
     background-color: rgba(130 236 236 /.5);
@@ -275,7 +284,7 @@ body[data-state="S4"] #nav-toggle {
 #work {
     display: flex;
     gap: 10vmin; /* spacing between inner parts */
-    position: fixed;
+    position: absolute;
     z-index: 3;
     bottom: -65vh;
     height: 65vh;
@@ -287,12 +296,13 @@ body[data-state="S4"] #nav-toggle {
 
 /* Work link + image container */
 .work-container {
-    left: 50%;
+    left: calc(33.33% - 5vmin);
+
     object-fit: contain;
     display: inline-flex;
     align-items: center;
     flex-direction: column;
-    gap: 3vmin;
+    gap: 10vmin;
     position: relative;
 
 }
@@ -385,18 +395,23 @@ body[data-state="S4"] #nav-toggle {
 body[data-state="S3"] #film {
     bottom: calc(45vh - 31.5vh);
 }
+
 body[data-state="S4"] #film {
     bottom: calc(25vh - 31.5vh);
 }
+
 body[data-state="S3"] #work {
     bottom: calc(45vh - 31.5vh);
 }
+
 body[data-state="S4"] #work {
     bottom: calc(25vh - 31.5vh);
 }
+
 body[data-state="S3"] #info {
     bottom: calc(45vh - 31.5vh);
 }
+
 body[data-state="S4"] #info {
     bottom: calc(25vh - 31.5vh);
 }
