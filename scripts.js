@@ -75,42 +75,42 @@ const toggleNav = () => {
     }
 }
 
-// Store image-tracks and selected track
-const tracks = document.querySelectorAll(".image-track"); // change me
-let selectedTrack = document.getElementById('film')
+// Store image-displays and selected track
+const displays = document.querySelectorAll(".display"); // change me
+let selectedDisplays = document.getElementById('film')
 let firstTime = true;
 
 // State Machine updates when nav buttons are pressed
 const toggleButtonClicked = (buttonType) => {
 
     // Update selected track based on button clicked
-    selectedTrack = document.getElementById(buttonType);
+    selectedDisplays = document.getElementById(buttonType);
 
     // Don't delay the first time...
     if (firstTime) {
 
-        // Hide all tracks after animations complete
-        tracks.forEach(track => {
+        // Hide all displays after animations complete
+        displays.forEach(track => {
             track.style.display = 'none';
         });
-        selectedTrack.style.display = 'flex';
+        selectedDisplays.style.display = 'flex';
         firstTime = false;
 
     } else { // ...otherwise let previous animation finish before wiping rest
         setTimeout(() => {
-            tracks.forEach(track => {
+            displays.forEach(track => {
                 track.style.display = 'none';
             });
-            selectedTrack.style.display = 'flex';
+            selectedDisplays.style.display = 'flex';
         }, 1100);
     }
 
     // Make the selected track visible after animations complete
     setTimeout(() => {
         // Only update the selected track
-        if (selectedTrack) {
-            selectedTrack.style.display = 'flex';
-            track = selectedTrack; // Update the 'track' variable
+        if (selectedDisplays) {
+            selectedDisplays.style.display = 'flex';
+            track = selectedDisplays; // Update the 'track' variable
         }
     }, 1100); // Delay the execution of the code for 1100ms to allow the previous track to finish its animation up
 
@@ -172,7 +172,7 @@ const handleOnTouchMove = (e) => {
                 },
                 {duration: 1200, fill: "forwards"}
             );
-            for (const image of filmReel.getElementsByClassName("image")) {
+            for (const image of filmReel.getElementsByClassName("filmImage")) {
                 image.animate(
                     {
                         objectPosition: `${100 + nextPercentage}% center`,
@@ -184,7 +184,7 @@ const handleOnTouchMove = (e) => {
             // Animate transformation
             const animate = () => {
                 filmReel.style.transform = `translate(${nextPercentage}%, 0%)`;
-                for (const image of filmReel.getElementsByClassName("image")) {
+                for (const image of filmReel.getElementsByClassName("filmImage")) {
                     image.style.objectPosition = `${100 + nextPercentage}% center`;
                 }
             };
