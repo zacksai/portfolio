@@ -31,7 +31,7 @@ function animateNavToggle() {
 
         // only execute if first hover hasn't happened
         if (!firstHover) {
-            navToggle.style.transform = "scale(1.17)";
+            navToggle.style.transform = "scale(2)";
             openIcon.style.opacity = "1";
         }
         // reset it after a second if mouse has left
@@ -42,14 +42,14 @@ function animateNavToggle() {
             }
             // add another event listener to apply the hover styling again
             navToggle.addEventListener("mouseenter", () => {
-                navToggle.style.transform = "scale(1.17)";
+                navToggle.style.transform = "scale(2)";
                 if (document.body.dataset.state === "S1" || document.body.dataset.state === "S4") {
                     openIcon.style.opacity = "1";
 
                 }
             });
         }, 3000);
-    }, 100);
+    }, 1000);
 
 }
 
@@ -151,6 +151,8 @@ const handleOnTouchUp = () => {
     }
 };
 
+const isMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+
 // Calculate % based off movement and transform
 const handleOnTouchMove = (e) => {
     for (const reel of nodeList) {
@@ -159,8 +161,12 @@ const handleOnTouchMove = (e) => {
         if (reel.dataset.mouseDownAt === "0") return;
 
         // Find difference
-        let mouseDelta = parseFloat(reel.dataset.mouseDownAt) - e.clientX,
-            maxDelta = window.innerWidth / 2;
+        let mouseDelta = parseFloat(reel.dataset.mouseDownAt) - e.clientX;
+
+        let maxDelta = window.innerWidth / 2;
+        if (isMobile) {
+            maxDelta = window.innerWidth / .7;
+        }
 
         // Calculate %
         let percentage = (mouseDelta / maxDelta) * -100,
@@ -175,12 +181,12 @@ const handleOnTouchMove = (e) => {
         reel.dataset.percentage = nextPercentage;
 
         // Animate transformation differently on mobile and desktop (smooth)
-        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+        if (!isMobile) {
             reel.animate(
                 {
                     transform: `translate(${nextPercentage}%, 0%)`,
                 },
-                {duration: 1200, fill: "forwards"}
+                {duration: 10000, fill: "forwards"}
             );
 
             // animate object position if film
@@ -190,7 +196,7 @@ const handleOnTouchMove = (e) => {
                         {
                             objectPosition: `${100 + nextPercentage}% center`,
                         },
-                        {duration: 1200, fill: "forwards"}
+                        {duration: 10000, fill: "forwards"}
                     );
                 }
             }
@@ -201,9 +207,11 @@ const handleOnTouchMove = (e) => {
                 // animate object position if film
                 if (reel.id === 'film') {
                     for (const image of reel.getElementsByClassName("filmImage")) {
-                        image.style.objectPosition = `${100 + nextPercentage}% center`;
+                        image.style.objectPosition = `${(100 + nextPercentage).toFixed(2)}% center`;
                     }
                 }
+                3
+                requestAnimationFrame(animate);
             };
             requestAnimationFrame(animate);
         }

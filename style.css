@@ -1,7 +1,7 @@
 /* disable touch interactions */
 html {
-    touch-action: manipulation;
-    -ms-touch-action: manipulation;
+    touch-action: none;
+    -ms-touch-action: none;
     overflow: hidden;
 }
 
@@ -9,13 +9,13 @@ html {
 @media only screen and (max-width: 767px) {
     /* Disable zooming */
     body {
-        touch-action: pan-y;
+        touch-action: none;
         user-select: none;
         -webkit-text-size-adjust: none;
         -moz-text-size-adjust: none;
         -ms-text-size-adjust: none;
         max-height: 100vh;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 
     /* Hide the zoom control */
@@ -109,6 +109,7 @@ nav {
     bottom: -25vh;
     transform: scale(.75);
     z-index: 1; /* below nav toggle */
+    overflow: hidden;
 
     /* motion */
     transition: bottom .9s cubic-bezier(.83, .3, .38, .97), transform 500ms cubic-bezier(.13, .53, .38, .97);
@@ -283,28 +284,30 @@ body[data-state="S4"] #nav-toggle {
 /* work container */
 #work {
     display: flex;
-    gap: 10vmin; /* spacing between inner parts */
     position: absolute;
+    width: calc(30vh + 10vmin + 100%);
+
     z-index: 3;
     bottom: -65vh;
     height: 65vh;
-    justify-content: space-around;
-    width: 100%;
+    left: 25%;
+    align-items: center;
+    justify-content: space-between;
     user-select: none; /* Prevent image highlighting */
     transition: bottom 1100ms cubic-bezier(.83, .3, .38, .97);
 }
 
 /* Work link + image container */
 .work-container {
-    left: calc(33.33% - 5vmin);
-
+    margin: 0 10vmin;
+    gap: 1vmin;
+    height: 100%;
     object-fit: contain;
     display: inline-flex;
     align-items: center;
+    justify-content: space-between;
     flex-direction: column;
-    gap: 10vmin;
     position: relative;
-
 }
 
 /* Images inside work */
