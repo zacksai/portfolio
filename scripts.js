@@ -1,4 +1,3 @@
-// Loading circle at beginning of page
 window.onload = function () {
     document.getElementById("loader").style.display = "none";
     animateNavToggle();
@@ -210,7 +209,6 @@ const handleOnTouchMove = (e) => {
                         image.style.objectPosition = `${(100 + nextPercentage).toFixed(2)}% center`;
                     }
                 }
-                3
                 requestAnimationFrame(animate);
             };
             requestAnimationFrame(animate);
