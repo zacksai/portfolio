@@ -1,7 +1,9 @@
+
 window.onload = function () {
     document.getElementById("loader").style.display = "none";
     animateNavToggle();
 }
+
 
 // Opening hover
 let isMouseOverNavToggle = false;
@@ -30,7 +32,7 @@ function animateNavToggle() {
 
         // only execute if first hover hasn't happened
         if (!firstHover) {
-            navToggle.style.transform = "scale(2)";
+            navToggle.style.transform = "scale(1.5)";
             openIcon.style.opacity = "1";
         }
         // reset it after a second if mouse has left
@@ -41,14 +43,14 @@ function animateNavToggle() {
             }
             // add another event listener to apply the hover styling again
             navToggle.addEventListener("mouseenter", () => {
-                navToggle.style.transform = "scale(2)";
+                navToggle.style.transform = "scale(1.5)";
                 if (document.body.dataset.state === "S1" || document.body.dataset.state === "S4") {
                     openIcon.style.opacity = "1";
 
                 }
             });
         }, 3000);
-    }, 1000);
+    }, 2500);
 
 }
 

@@ -201,6 +201,11 @@ body[data-state="S4"] > nav {
 
 }
 
+/* Delayed hover effect */
+#nav-toggle.animate-hover {
+    animation: animateNavToggle 3s cubic-bezier(.83, .3, .38, .97) infinite;
+}
+
 /* child element: image in menu toggle */
 #nav-toggle > img {
     width: 1.5vh;
@@ -210,13 +215,13 @@ body[data-state="S4"] > nav {
     opacity: 0; /* default to invisible */
 
     /* motion */
-    transition: opacity .5s ease-in-out, trqansform 500ms cubic-bezier(.13, .53, .38, .97);
+    transition: opacity .5s ease-in-out, transform 500ms cubic-bezier(.13, .53, .38, .97);
 }
 
 /* TOGGLE BUTTON ANIMATIONS */
 /* Expand on hover  */
 #nav-toggle:hover {
-    transform: scale(1.17);
+    transform: scale(1.5);
     background-color: rgba(255, 255, 255, .5);
 }
 
